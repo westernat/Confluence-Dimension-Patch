@@ -114,6 +114,12 @@ dependencies {
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     compileOnly 'com.github.glitchfiend:TerraBlender-neoforge:' + minecraft_version + '-' + terrablender_version
+
+    if (true) {
+        runtimeOnly "curse.maven:oh-the-biomes-weve-gone-1070751:6298837"
+        runtimeOnly "curse.maven:corgilib-693313:6002859"
+        runtimeOnly "curse.maven:oh-the-trees-youll-grow-962544:6294221"
+    }
 }
 
 tasks.withType(ProcessResources).configureEach {
