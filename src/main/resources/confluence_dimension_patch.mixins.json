@@ -1,0 +1,26 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "org.mesdag.confluence_dimension_patch.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "BiomeSourceMixin",
+        "ChunkGeneratorMixin",
+        "ChunkGeneratorStructureStateMixin",
+        "ChunkMapMixin",
+        "HardmodeConvertorMixin",
+        "ModBiomesMixin",
+        "NoiseBasedChunkGeneratorMixin",
+        "OverworldUtilsMixin",
+        "PlacedFeatureMixin",
+        "SurfaceSystemMixin"
+    ],
+    "client": [
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "overwrites": {
+        "requireAnnotations": true
+    }
+}
