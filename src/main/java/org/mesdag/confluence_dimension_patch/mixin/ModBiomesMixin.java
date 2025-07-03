@@ -3,7 +3,7 @@ package org.mesdag.confluence_dimension_patch.mixin;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import org.confluence.mod.common.init.ModBiomes;
-import org.mesdag.confluence_dimension_patch.common.util.OnlyInOtherworldRuleSource;
+import org.mesdag.confluence_dimension_patch.common.OnlyInOtherworldRuleSource;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 

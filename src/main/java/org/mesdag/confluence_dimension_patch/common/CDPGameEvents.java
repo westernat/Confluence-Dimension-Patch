@@ -1,4 +1,4 @@
-package org.mesdag.confluence_dimension_patch.common.util;
+package org.mesdag.confluence_dimension_patch.common;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Mob;

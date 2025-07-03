@@ -23,14 +23,14 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.mesdag.confluence_dimension_patch.ConfluenceDimensionPatch;
-import org.mesdag.confluence_dimension_patch.common.util.OtherWorld;
+import org.mesdag.confluence_dimension_patch.common.OtherWorld;
 
 import java.util.OptionalLong;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = ConfluenceDimensionPatch.MODID, bus = EventBusSubscriber.Bus.MOD)
-public class CDPDataGenerator {
+public final class CDPDataGenerator {
     private static final RegistrySetBuilder DATA_BUILDER = new RegistrySetBuilder()
             .add(Registries.DIMENSION_TYPE, CDPDataGenerator::dimensionType)
             .add(Registries.LEVEL_STEM, CDPDataGenerator::levelStem);
@@ -43,9 +43,13 @@ public class CDPDataGenerator {
         CompletableFuture<HolderLookup.Provider> lookup = event.getLookupProvider();
 
         boolean client = event.includeClient();
+        generator.addProvider(client, new CDPItemModelProvider(output, helper));
+        generator.addProvider(client, new CDPLanguageProvider(output, true));
+        generator.addProvider(client, new CDPLanguageProvider(output, false));
 
         boolean server = event.includeServer();
         lookup = generator.addProvider(server, new DatapackBuiltinEntriesProvider(output, lookup, DATA_BUILDER, Set.of(ConfluenceDimensionPatch.MODID))).getRegistryProvider();
+        generator.addProvider(server, new CDPRecipeProvider(output, lookup));
     }
 
     private static void dimensionType(BootstrapContext<DimensionType> context) {

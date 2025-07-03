@@ -1,0 +1,13 @@
+{
+    "entries": [
+        {
+            "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+            "name": "CONFLUENCE_DIMENSION_PATCH_TERRARIUM",
+            "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+            "parameters": {
+                "class": "org/mesdag/confluence_dimension_patch/common/CDPArmPoses",
+                "field": "TERRARIUM"
+            }
+        }
+    ]
+}

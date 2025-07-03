@@ -5,7 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import org.confluence.mod.common.data.saved.HardmodeConvertor;
-import org.mesdag.confluence_dimension_patch.common.util.OtherWorld;
+import org.mesdag.confluence_dimension_patch.common.OtherWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 

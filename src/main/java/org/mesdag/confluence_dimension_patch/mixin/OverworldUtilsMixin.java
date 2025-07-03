@@ -17,8 +17,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.confluence.mod.common.init.ModTags;
 import org.confluence.mod.util.OverworldUtils;
-import org.mesdag.confluence_dimension_patch.ConfluenceDimensionPatch;
-import org.mesdag.confluence_dimension_patch.common.util.OtherWorld;
+import org.mesdag.confluence_dimension_patch.common.OtherWorld;
 import org.mesdag.confluence_dimension_patch.mixed.IDimensionAccessor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,7 +33,7 @@ import java.util.function.Supplier;
 public abstract class OverworldUtilsMixin {
     @Inject(method = "dimension", at = @At("HEAD"), cancellable = true)
     private static void replace(CallbackInfoReturnable<ResourceKey<Level>> cir) {
-        cir.setReturnValue(ConfluenceDimensionPatch.OTHERWORLD);
+        cir.setReturnValue(OtherWorld.LEVEL);
     }
 
     @Inject(method = "replaceBiome", at = @At("HEAD"), cancellable = true)

@@ -1,24 +1,32 @@
 package org.mesdag.confluence_dimension_patch;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import org.confluence.mod.common.init.ModTabs;
+import org.mesdag.confluence_dimension_patch.common.TerrariumItem;
 
 @Mod(ConfluenceDimensionPatch.MODID)
 public class ConfluenceDimensionPatch {
     public static final String MODID = "confluence_dimension_patch";
-    public static final Logger LOGGER = LoggerFactory.getLogger("ConfluenceDimensionPatch");
-    public static final ResourceKey<Level> OTHERWORLD = ResourceKey.create(Registries.DIMENSION, asResource("otherworld"));
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
+    public static final DeferredItem<TerrariumItem> TERRARIUM = ITEMS.register("terrarium", TerrariumItem::new);
 
-    public ConfluenceDimensionPatch(IEventBus modEventBus, ModContainer modContainer) {}
+    public ConfluenceDimensionPatch(IEventBus modEventBus) {
+        ITEMS.register(modEventBus);
+        modEventBus.addListener(this::buildCreativeModeTabContents);
+    }
 
     public static ResourceLocation asResource(String path) {
         return ResourceLocation.fromNamespaceAndPath(MODID, path);
+    }
+
+    private void buildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == ModTabs.TOOLS.getKey()) {
+            event.accept(TERRARIUM);
+        }
     }
 }

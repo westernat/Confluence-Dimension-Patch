@@ -1,4 +1,4 @@
-package org.mesdag.confluence_dimension_patch.common.util;
+package org.mesdag.confluence_dimension_patch.common;
 
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.KeyDispatchDataCodec;

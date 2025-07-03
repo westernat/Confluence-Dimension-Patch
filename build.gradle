@@ -111,6 +111,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     implementation files("libs/ConfluenceOtherworld-1.1.4-alpha.jar")
+    compileOnly files("libs/confluence_magic_lib-0.0.1.jar")
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     compileOnly 'com.github.glitchfiend:TerraBlender-neoforge:' + minecraft_version + '-' + terrablender_version
