@@ -2,7 +2,6 @@ package org.mesdag.confluence_dimension_patch.client;
 
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -12,9 +11,9 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
-import org.confluence.lib.util.LibUtils;
 import org.mesdag.confluence_dimension_patch.ConfluenceDimensionPatch;
 import org.mesdag.confluence_dimension_patch.common.CDPArmPoses;
+import org.mesdag.confluence_dimension_patch.common.OtherWorld;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -22,10 +21,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public final class CDPClientModEvents {
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> ItemProperties.register(ConfluenceDimensionPatch.TERRARIUM.get(), ConfluenceDimensionPatch.asResource("dimension"), (stack, level, entity, seed) -> {
-            CompoundTag tag = LibUtils.getItemStackNbtIfPresent(stack);
-            return tag == null ? 0 : tag.getInt("dimension");
-        }));
+        event.enqueueWork(() -> ItemProperties.register(ConfluenceDimensionPatch.TERRARIUM.get(), ConfluenceDimensionPatch.asResource("dimension"),
+                (stack, level, entity, seed) -> level == null ? 0 : level.dimension() == OtherWorld.LEVEL ? 1 : 0)
+        );
     }
 
     @SubscribeEvent

@@ -9,6 +9,7 @@
         "ChunkGeneratorStructureStateMixin",
         "ChunkMapMixin",
         "HardmodeConvertorMixin",
+        "LivingEntityEventsMixin",
         "ModBiomesMixin",
         "NoiseBasedChunkGeneratorMixin",
         "OverworldUtilsMixin",

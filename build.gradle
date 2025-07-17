@@ -110,7 +110,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
 dependencies {
-    implementation files("libs/ConfluenceOtherworld-1.1.4-alpha.jar")
+    implementation "curse.maven:confluence-1209464:6775061"
     compileOnly files("libs/confluence_magic_lib-0.0.1.jar")
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"

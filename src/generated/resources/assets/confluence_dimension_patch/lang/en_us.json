@@ -1,3 +1,7 @@
 {
-  "item.confluence_dimension_patch.terrarium": "Terrarium"
+  "item.confluence_dimension_patch.terrarium": "Terrarium",
+  "message.confluence_dimension_patch.unavailable": "You can't use it in current dimension!",
+  "tooltip.item.confluence.terrarium.0": "Minecraft",
+  "tooltip.item.confluence.terrarium.1": "Confluence: Otherworld",
+  "tooltip.item.confluence.terrarium.2": "Currently In"
 }

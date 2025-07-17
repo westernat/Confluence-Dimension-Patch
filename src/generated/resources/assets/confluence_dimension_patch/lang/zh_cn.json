@@ -1,3 +1,7 @@
 {
-  "item.confluence_dimension_patch.terrarium": "盒中泰拉"
+  "item.confluence_dimension_patch.terrarium": "盒中泰拉",
+  "message.confluence_dimension_patch.unavailable": "你不能在当前维度使用它！",
+  "tooltip.item.confluence.terrarium.0": "我的世界",
+  "tooltip.item.confluence.terrarium.1": "汇流来世",
+  "tooltip.item.confluence.terrarium.2": "目前位于"
 }
