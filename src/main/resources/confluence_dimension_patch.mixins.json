@@ -8,6 +8,7 @@
         "ChunkGeneratorMixin",
         "ChunkGeneratorStructureStateMixin",
         "ChunkMapMixin",
+        "GameEntityEventMixin",
         "HardmodeConvertorMixin",
         "LivingEntityEventsMixin",
         "ModBiomesMixin",
