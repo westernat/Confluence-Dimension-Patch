@@ -14,6 +14,7 @@
         "NoiseBasedChunkGeneratorMixin",
         "OverworldUtilsMixin",
         "PlacedFeatureMixin",
+        "StructureSetMixin",
         "SurfaceSystemMixin"
     ],
     "client": [
