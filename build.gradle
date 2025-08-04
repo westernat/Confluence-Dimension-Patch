@@ -24,6 +24,14 @@ repositories {
         name = "Forge"
         url = "https://maven.minecraftforge.net"
     }
+    maven {
+        name "org.confluenceReleases"
+        url "https://maven.confluence.ink/releases"
+    }
+    maven {
+        name "org.confluenceSnapshots"
+        url "https://maven.confluence.ink/snapshots"
+    }
 }
 
 base {
@@ -111,7 +119,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     implementation files("libs/ConfluenceOtherworld-1.1.5-alpha.jar")
-    compileOnly files("libs/confluence_magic_lib-0.0.1.jar")
+    compileOnly "org.confluence.lib:Confluence-Magic-Lib:0.0.2-SNAPSHOT"
     compileOnly files("libs/terra_entity-1.1.16-hotfix2.jar")
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
