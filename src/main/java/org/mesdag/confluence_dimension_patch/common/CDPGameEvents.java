@@ -24,9 +24,11 @@ public final class CDPGameEvents {
 
     @SubscribeEvent
     public static void advancement$earn(AdvancementEvent.AdvancementEarnEvent event) {
-        ResourceLocation id = event.getAdvancement().id();
-        if (id.getNamespace().equals(Confluence.MODID) && id.getPath().endsWith("new_world")) {
-            event.getEntity().addItem(ConfluenceDimensionPatch.TERRARIUM.toStack());
+        if (CDPCommonConfigs.INITIAL_TERRARIUM.get()) {
+            ResourceLocation id = event.getAdvancement().id();
+            if (id.getNamespace().equals(Confluence.MODID) && id.getPath().endsWith("new_world")) {
+                event.getEntity().addItem(ConfluenceDimensionPatch.TERRARIUM.toStack());
+            }
         }
     }
 }
