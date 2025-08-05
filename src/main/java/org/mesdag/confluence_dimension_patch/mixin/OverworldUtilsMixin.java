@@ -38,7 +38,7 @@ public abstract class OverworldUtilsMixin {
 
     @Inject(method = "replaceBiome", at = @At("HEAD"), cancellable = true)
     private static void unApply(MultiNoiseBiomeSource biomeSource, int x, int y, int z, CallbackInfoReturnable<Holder<Biome>> cir, Supplier<List<Holder<Biome>>> jungleGetter, Supplier<Pair<Holder<Biome>, Holder<Biome>>> biomePairGetter, Function<RegistryAccess, Holder<Biome>> protectionFactory, CallbackInfo ci) {
-        if (!((IDimensionAccessor) biomeSource).confluence_dimension_patch$allows()) {
+        if (!IDimensionAccessor.of(biomeSource).confluence_dimension_patch$isNotOverworld()) {
             MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
             if (server != null && cir.getReturnValue().is(ModTags.Biomes.IS_CONFLUENCE)) {
                 cir.setReturnValue(protectionFactory.apply(server.registryAccess()));

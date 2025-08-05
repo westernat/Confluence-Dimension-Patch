@@ -22,8 +22,8 @@ public abstract class ChunkMapMixin {
     @ModifyExpressionValue(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/chunk/ChunkGenerator;createState(Lnet/minecraft/core/HolderLookup;Lnet/minecraft/world/level/levelgen/RandomState;J)Lnet/minecraft/world/level/chunk/ChunkGeneratorStructureState;"))
     private ChunkGeneratorStructureState apply(ChunkGeneratorStructureState original, @Local(argsOnly = true) ChunkGenerator generator) {
         if (level.dimension() != Level.OVERWORLD) {
-            ((IDimensionAccessor) original).confluence_dimension_patch$setAllows();
-            ((IDimensionAccessor) generator.getBiomeSource()).confluence_dimension_patch$setAllows();
+            IDimensionAccessor.of(original).confluence_dimension_patch$setIsNotOverworld();
+            IDimensionAccessor.of(generator.getBiomeSource()).confluence_dimension_patch$setIsNotOverworld();
         }
         return original;
     }

@@ -8,15 +8,15 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(StructureSet.class)
 public abstract class StructureSetMixin implements IStructureSet {
     @Unique
-    private boolean confluence_dimension_patch$fromConfluence;
+    private boolean confluence_dimension_patch$notFromConfluence;
 
     @Override
-    public void confluence_dimension_patch$setIsFromConfluence(boolean is) {
-        this.confluence_dimension_patch$fromConfluence = is;
+    public void confluence_dimension_patch$setIsNotFromConfluence(boolean not) {
+        this.confluence_dimension_patch$notFromConfluence = not;
     }
 
     @Override
-    public boolean confluence_dimension_patch$isFromConfluence() {
-        return confluence_dimension_patch$fromConfluence;
+    public boolean confluence_dimension_patch$isNotFromConfluence() {
+        return confluence_dimension_patch$notFromConfluence;
     }
 }

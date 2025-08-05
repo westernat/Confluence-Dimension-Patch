@@ -25,23 +25,23 @@ public abstract class ChunkGeneratorStructureStateMixin implements IDimensionAcc
     @Final
     private List<Holder<StructureSet>> possibleStructureSets;
     @Unique
-    private boolean confluence_dimension_patch$allows = false;
+    private boolean confluence_dimension_patch$notOverworld = false;
 
     @Override
-    public void confluence_dimension_patch$setAllows() {
-        this.confluence_dimension_patch$allows = true;
+    public void confluence_dimension_patch$setIsNotOverworld() {
+        this.confluence_dimension_patch$notOverworld = true;
     }
 
     @Override
-    public boolean confluence_dimension_patch$allows() {
-        return confluence_dimension_patch$allows;
+    public boolean confluence_dimension_patch$isNotOverworld() {
+        return confluence_dimension_patch$notOverworld;
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void mark(RandomState randomState, BiomeSource biomeSource, long levelSeed, long cocentricRingsSeed, List<Holder<StructureSet>> possibleStructureSets, CallbackInfo ci) {
         for (Holder<StructureSet> holder : this.possibleStructureSets) {
             ResourceKey<StructureSet> key = holder.getKey();
-            IStructureSet.of(holder.value()).confluence_dimension_patch$setIsFromConfluence(key != null && Confluence.MODID.equals(key.location().getNamespace()));
+            IStructureSet.of(holder.value()).confluence_dimension_patch$setIsNotFromConfluence(key == null || !Confluence.MODID.equals(key.location().getNamespace()));
         }
     }
 }
