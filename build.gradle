@@ -119,7 +119,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     implementation files("libs/ConfluenceOtherworld-1.1.5-alpha.jar")
-    compileOnly "org.confluence.lib:Confluence-Magic-Lib:0.0.2-SNAPSHOT"
+    compileOnly "org.confluence.lib:Confluence-Magic-Lib:0.0.2a-SNAPSHOT"
     compileOnly files("libs/terra_entity-1.1.16-hotfix2.jar")
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"

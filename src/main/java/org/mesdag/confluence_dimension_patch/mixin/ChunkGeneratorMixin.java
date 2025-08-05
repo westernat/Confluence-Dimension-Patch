@@ -15,8 +15,6 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class ChunkGeneratorMixin {
     @ModifyExpressionValue(method = "lambda$createStructures$14", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/levelgen/structure/placement/StructurePlacement;isStructureChunk(Lnet/minecraft/world/level/chunk/ChunkGeneratorStructureState;II)Z"))
     private boolean skip(boolean original, @Local(argsOnly = true) ChunkGeneratorStructureState structureState, @Local(argsOnly = true) Holder<StructureSet> holder) {
-        return original &&
-                ((IDimensionAccessor) structureState).confluence_dimension_patch$allows() &&
-                !IStructureSet.of(holder.value()).confluence_dimension_patch$isFromConfluence();
+        return original && (((IDimensionAccessor) structureState).confluence_dimension_patch$allows() || !IStructureSet.of(holder.value()).confluence_dimension_patch$isFromConfluence());
     }
 }
