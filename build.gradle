@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 plugins {
     id 'java-library'
     id 'maven-publish'
@@ -5,7 +7,7 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.96'
 }
 
-version = mod_version
+version = mod_version + "-${new SimpleDateFormat("yyMMdd").format(new Date())}"
 group = mod_group_id
 
 repositories {
