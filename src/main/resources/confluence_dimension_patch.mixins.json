@@ -9,6 +9,7 @@
         "ChunkGeneratorStructureStateMixin",
         "ChunkMapMixin",
         "GameEntityEventMixin",
+        "GelDelicaciesItemMixin",
         "GoblinBattleStandardMixin",
         "LivingEntityEventsMixin",
         "ModBiomesMixin",
