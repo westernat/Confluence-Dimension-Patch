@@ -120,11 +120,13 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
 dependencies {
-    implementation files("libs/ConfluenceOtherworld-1.1.5-beta-250807.jar")
-    compileOnly "org.confluence.lib:Confluence-Magic-Lib:0.0.2a-SNAPSHOT"
-    compileOnly files("libs/terra_entity-1.1.16-hotfix2.jar")
-    compileOnly files("libs/heaven_destiny_moment-1.21.1-0.0.1.jar")
-    compileOnly files("libs/terra_moment-1.21.1-0.0.1.jar")
+    implementation files("libs/ConfluenceOtherworld-1.1.5-250810.jar")
+    implementation files("libs/confluence_magic_lib-0.0.2a-SNAPSHOT.jar")
+    implementation files("libs/terra_entity-1.1.17.jar")
+    implementation files("libs/heaven_destiny_moment-1.21.1-0.0.1.jar")
+    implementation files("libs/terra_moment-1.21.1-0.0.1.jar")
+    implementation files("libs/xhn_lib-1.21.1-0.0.2.jar")
+
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     compileOnly 'com.github.glitchfiend:TerraBlender-neoforge:' + minecraft_version + '-' + terrablender_version
