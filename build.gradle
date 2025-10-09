@@ -7,7 +7,7 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.96'
 }
 
-version = mod_version + "-${new SimpleDateFormat("yyMMdd").format(new Date())}"
+version = mod_version + "-beta" + "-${new SimpleDateFormat("yyMMdd").format(new Date())}"
 group = mod_group_id
 
 repositories {
@@ -120,12 +120,12 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
 dependencies {
-    implementation files("libs/ConfluenceOtherworld-1.2.0-alpha-250831.jar")
-    compileOnly "org.confluence.lib:Confluence-Magic-Lib:0.0.2a-SNAPSHOT"
-    implementation files("libs/heaven_destiny_moment-1.21.1-0.0.1b.jar")
+    implementation files("libs/ConfluenceOtherworld-1.2.0-beta-251009.jar")
+    compileOnly "org.confluence.lib:Confluence-Magic-Lib:0.0.2d-SNAPSHOT"
+    implementation files("libs/heaven_destiny_moment-1.21.1-0.0.1.jar")
     implementation files("libs/terra_entity-1.1.17-hotfix.jar")
-    implementation files("libs/terra_moment-1.21.1-0.0.1b.jar")
-    implementation files("libs/xhn_lib-1.21.1-0.0.2b.jar")
+    implementation files("libs/terra_moment-1.21.1-0.0.1.jar")
+    implementation files("libs/xhn_lib-1.21.1-0.0.2.jar")
 
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
