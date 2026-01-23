@@ -29,7 +29,7 @@ import java.util.OptionalLong;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = ConfluenceDimensionPatch.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ConfluenceDimensionPatch.MODID)
 public final class CDPDataGenerator {
     private static final RegistrySetBuilder DATA_BUILDER = new RegistrySetBuilder()
             .add(Registries.DIMENSION_TYPE, CDPDataGenerator::dimensionType)

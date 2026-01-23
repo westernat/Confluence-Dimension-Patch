@@ -17,7 +17,7 @@ import org.mesdag.confluence_dimension_patch.common.OtherWorld;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@EventBusSubscriber(modid = ConfluenceDimensionPatch.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = ConfluenceDimensionPatch.MODID, value = Dist.CLIENT)
 public final class CDPClientModEvents {
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {

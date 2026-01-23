@@ -12,7 +12,7 @@ import org.confluence.mod.Confluence;
 import org.confluence.mod.util.ModUtils;
 import org.mesdag.confluence_dimension_patch.ConfluenceDimensionPatch;
 
-@EventBusSubscriber(modid = ConfluenceDimensionPatch.MODID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = ConfluenceDimensionPatch.MODID)
 public final class CDPGameEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void mobSpawn$PositionCheck(MobSpawnEvent.PositionCheck event) {
