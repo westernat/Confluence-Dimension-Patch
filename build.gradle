@@ -7,7 +7,7 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.96'
 }
 
-version = mod_version + "-beta" + "-${new SimpleDateFormat("yyMMdd").format(new Date())}"
+version = mod_version + "-${new SimpleDateFormat("yyMMdd").format(new Date())}"
 group = mod_group_id
 
 repositories {
@@ -120,7 +120,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
 dependencies {
-    implementation files("libs/ConfluenceOtherworld-1.2.0-beta-260123.jar")
+    implementation files("libs/ConfluenceOtherworld-1.2.0-260125.jar")
     implementation files("libs/terra_entity-1.1.17-hotfix.jar")
     implementation files("libs/confluence_magic_lib-0.0.3.jar")
 
