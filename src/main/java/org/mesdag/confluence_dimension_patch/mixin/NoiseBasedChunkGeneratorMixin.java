@@ -21,7 +21,7 @@ public abstract class NoiseBasedChunkGeneratorMixin extends ChunkGenerator {
 
     @ModifyExpressionValue(method = "applyCarvers", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/biome/BiomeGenerationSettings;getCarvers(Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)Ljava/lang/Iterable;"))
     private Iterable<Holder<ConfiguredWorldCarver<?>>> filter(Iterable<Holder<ConfiguredWorldCarver<?>>> original) {
-        if (!IDimensionAccessor.of(getBiomeSource()).confluence_dimension_patch$isNotOverworld()) {
+        if (IDimensionAccessor.of(getBiomeSource()).cdp$isOverworld()) {
             return Iterables.filter(original, holder -> holder.getKey() != null && !Confluence.MODID.equals(holder.getKey().location().getNamespace()));
         }
         return original;
@@ -29,8 +29,8 @@ public abstract class NoiseBasedChunkGeneratorMixin extends ChunkGenerator {
 
     @ModifyExpressionValue(method = "buildSurface(Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/WorldGenerationContext;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/biome/BiomeManager;Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/blending/Blender;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/levelgen/RandomState;surfaceSystem()Lnet/minecraft/world/level/levelgen/SurfaceSystem;"))
     private SurfaceSystem apply(SurfaceSystem original) {
-        if (IDimensionAccessor.of(getBiomeSource()).confluence_dimension_patch$isNotOverworld()) {
-            IDimensionAccessor.of(original).confluence_dimension_patch$setIsNotOverworld();
+        if (IDimensionAccessor.of(getBiomeSource()).cdp$isNotOverworld()) {
+            IDimensionAccessor.of(original).cdp$setIsNotOverworld();
         }
         return original;
     }

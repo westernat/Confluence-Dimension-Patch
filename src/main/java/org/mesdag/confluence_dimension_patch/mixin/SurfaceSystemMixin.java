@@ -8,15 +8,15 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(SurfaceSystem.class)
 public class SurfaceSystemMixin implements IDimensionAccessor {
     @Unique
-    private boolean confluence_dimension_patch$notOverworld = false;
+    private boolean cdp$notOverworld = false;
 
     @Override
-    public void confluence_dimension_patch$setIsNotOverworld() {
-        this.confluence_dimension_patch$notOverworld = true;
+    public void cdp$setIsNotOverworld() {
+        this.cdp$notOverworld = true;
     }
 
     @Override
-    public boolean confluence_dimension_patch$isNotOverworld() {
-        return confluence_dimension_patch$notOverworld;
+    public boolean cdp$isNotOverworld() {
+        return cdp$notOverworld;
     }
 }

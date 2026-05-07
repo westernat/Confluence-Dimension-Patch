@@ -24,19 +24,19 @@ public abstract class PlacedFeatureMixin {
     private Holder<ConfiguredFeature<?, ?>> feature;
 
     @Unique
-    private final TriState[] confluence_dimension_patch$cache = new TriState[]{TriState.DEFAULT, TriState.DEFAULT};
+    private final TriState[] cdp$cache = new TriState[]{TriState.DEFAULT, TriState.DEFAULT};
 
     @Inject(method = "placeWithContext", at = @At("HEAD"), cancellable = true)
     private void skip(PlacementContext context, RandomSource source, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        int index = IDimensionAccessor.of(context.generator().getBiomeSource()).confluence_dimension_patch$isNotOverworld() ? 1 : 0;
-        if (confluence_dimension_patch$cache[index].isDefault() && feature.getKey() != null) {
+        int index = IDimensionAccessor.of(context.generator().getBiomeSource()).cdp$isNotOverworld() ? 1 : 0;
+        if (cdp$cache[index].isDefault() && feature.getKey() != null) {
             if (index != 1 && Confluence.MODID.equals(feature.getKey().location().getNamespace())) {
-                confluence_dimension_patch$cache[index] = TriState.FALSE;
+                cdp$cache[index] = TriState.FALSE;
             } else {
-                confluence_dimension_patch$cache[index] = TriState.TRUE;
+                cdp$cache[index] = TriState.TRUE;
             }
         }
-        if (confluence_dimension_patch$cache[index].isFalse()) {
+        if (cdp$cache[index].isFalse()) {
             cir.setReturnValue(false);
         }
     }
