@@ -9,8 +9,23 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(ModBiomes.class)
 public abstract class ModBiomesMixin {
+    @ModifyExpressionValue(method = "registerRegionAndSurface", at = @At(value = "INVOKE", target = "Lorg/confluence/mod/common/worldgen/biome/SurfaceRuleData;makeConfluenceOverWorldRules()Lnet/minecraft/world/level/levelgen/SurfaceRules$RuleSource;"))
+    private static SurfaceRules.RuleSource proxyConfluenceOverworld(SurfaceRules.RuleSource original) {
+        return new OnlyInOtherworldRuleSource(original);
+    }
+
+    @ModifyExpressionValue(method = "registerRegionAndSurface", at = @At(value = "INVOKE", target = "Lorg/confluence/mod/common/worldgen/biome/SurfaceRuleData;makeConfluenceNetherRules()Lnet/minecraft/world/level/levelgen/SurfaceRules$RuleSource;"))
+    private static SurfaceRules.RuleSource proxyConfluenceNether(SurfaceRules.RuleSource original) {
+        return new OnlyInOtherworldRuleSource(original);
+    }
+
+    @ModifyExpressionValue(method = "registerRegionAndSurface", at = @At(value = "INVOKE", target = "Lorg/confluence/mod/common/worldgen/biome/SurfaceRuleData;makeConfluenceEndRules()Lnet/minecraft/world/level/levelgen/SurfaceRules$RuleSource;"))
+    private static SurfaceRules.RuleSource proxyConfluenceEnd(SurfaceRules.RuleSource original) {
+        return new OnlyInOtherworldRuleSource(original);
+    }
+
     @ModifyExpressionValue(method = "registerRegionAndSurface", at = @At(value = "INVOKE", target = "Lorg/confluence/mod/common/worldgen/biome/SurfaceRuleData;makeMinecraftOverWorldRules()Lnet/minecraft/world/level/levelgen/SurfaceRules$RuleSource;"))
-    private static SurfaceRules.RuleSource proxy(SurfaceRules.RuleSource original) {
+    private static SurfaceRules.RuleSource proxyMinecraftOverworld(SurfaceRules.RuleSource original) {
         return new OnlyInOtherworldRuleSource(original);
     }
 }

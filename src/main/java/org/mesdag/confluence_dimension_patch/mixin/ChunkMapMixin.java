@@ -2,6 +2,7 @@ package org.mesdag.confluence_dimension_patch.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ChunkMap;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
@@ -21,10 +22,9 @@ public abstract class ChunkMapMixin {
 
     @ModifyExpressionValue(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/chunk/ChunkGenerator;createState(Lnet/minecraft/core/HolderLookup;Lnet/minecraft/world/level/levelgen/RandomState;J)Lnet/minecraft/world/level/chunk/ChunkGeneratorStructureState;"))
     private ChunkGeneratorStructureState apply(ChunkGeneratorStructureState original, @Local(argsOnly = true) ChunkGenerator generator) {
-        if (level.dimension() != Level.OVERWORLD) {
-            IDimensionAccessor.of(original).cdp$setIsNotOverworld();
-            IDimensionAccessor.of(generator.getBiomeSource()).cdp$setIsNotOverworld();
-        }
+        ResourceKey<Level> dimension = level.dimension();
+        IDimensionAccessor.of(original).cdp$setDimension(dimension);
+        IDimensionAccessor.of(generator.getBiomeSource()).cdp$setDimension(dimension);
         return original;
     }
 }

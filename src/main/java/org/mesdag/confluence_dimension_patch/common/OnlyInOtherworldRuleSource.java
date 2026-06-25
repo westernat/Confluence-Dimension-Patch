@@ -17,7 +17,7 @@ public record OnlyInOtherworldRuleSource(SurfaceRules.RuleSource otherworld) imp
 
     @Override
     public SurfaceRules.SurfaceRule apply(SurfaceRules.Context context) {
-        if (IDimensionAccessor.of(context.system).cdp$isNotOverworld()) {
+        if (IDimensionAccessor.of(context.system).cdp$isOtherworld()) {
             return otherworld.apply(context);
         }
         return (x, y, z) -> null;
