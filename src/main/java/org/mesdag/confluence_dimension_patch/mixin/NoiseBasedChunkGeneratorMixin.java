@@ -11,6 +11,7 @@ import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.SurfaceSystem;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import org.confluence.mod.Confluence;
+import org.mesdag.confluence_dimension_patch.common.CDPCommonConfigs;
 import org.mesdag.confluence_dimension_patch.mixed.IDimensionAccessor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,7 +24,8 @@ public abstract class NoiseBasedChunkGeneratorMixin extends ChunkGenerator {
 
     @ModifyExpressionValue(method = "applyCarvers", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/biome/BiomeGenerationSettings;getCarvers(Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)Ljava/lang/Iterable;"))
     private Iterable<Holder<ConfiguredWorldCarver<?>>> filter(Iterable<Holder<ConfiguredWorldCarver<?>>> original) {
-        if (IDimensionAccessor.of(getBiomeSource()).cdp$isOutsideOtherworld()) {
+        ResourceKey<Level> dimension = IDimensionAccessor.of(getBiomeSource()).cdp$getDimension();
+        if (!CDPCommonConfigs.allowsConfluenceBiomeGeneration(dimension)) {
             return Iterables.filter(original, holder -> holder.getKey() != null && !Confluence.MODID.equals(holder.getKey().location().getNamespace()));
         }
         return original;

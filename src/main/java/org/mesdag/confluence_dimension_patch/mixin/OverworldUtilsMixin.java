@@ -42,7 +42,7 @@ public abstract class OverworldUtilsMixin {
     @Inject(method = "replaceBiome", at = @At("HEAD"), cancellable = true)
     private static void unApply(CallbackInfo ci, @Local(argsOnly = true) MultiNoiseBiomeSource biomeSource, @Local(argsOnly = true) CallbackInfoReturnable<Holder<Biome>> cir) {
         ResourceKey<Level> dimension = IDimensionAccessor.of(biomeSource).cdp$getDimension();
-        if (!uninitialized && IDimensionAccessor.of(biomeSource).cdp$isOutsideOtherworld() && !CDPCommonConfigs.allowsConfluenceBiomeGeneration(dimension)) {
+        if (!uninitialized && IDimensionAccessor.of(biomeSource).cdp$isNotOtherworld() && !CDPCommonConfigs.allowsConfluenceBiomeGeneration(dimension)) {
             Holder<Biome> biome = cir.getReturnValue();
             if (biome != null && biome.is(ModTags.Biomes.IS_CONFLUENCE)) {
                 cir.setReturnValue(plains);

@@ -9,23 +9,19 @@ public interface IDimensionAccessor {
 
     ResourceKey<Level> cdp$getDimension();
 
-    default void cdp$setIsNotOverworld() {
-        cdp$setDimension(Level.NETHER);
-    }
-
-    default boolean cdp$isNotOverworld() {
-        return !Level.OVERWORLD.equals(cdp$getDimension());
-    }
-
     default boolean cdp$isOverworld() {
         return Level.OVERWORLD.equals(cdp$getDimension());
+    }
+
+        default boolean cdp$isNotOverworld() {
+        return !cdp$isOverworld();
     }
 
     default boolean cdp$isOtherworld() {
         return OtherWorld.LEVEL.equals(cdp$getDimension());
     }
 
-    default boolean cdp$isOutsideOtherworld() {
+    default boolean cdp$isNotOtherworld() {
         return !cdp$isOtherworld();
     }
 

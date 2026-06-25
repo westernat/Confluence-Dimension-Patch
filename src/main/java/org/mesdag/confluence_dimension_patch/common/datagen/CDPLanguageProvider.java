@@ -27,15 +27,13 @@ public class CDPLanguageProvider extends LanguageProvider {
         add("confluence_dimension_patch.configuration.allowEndMobSpawning", "Allow End Mob Spawning", "允许末地怪物生成");
         add("confluence_dimension_patch.configuration.allowEndMobSpawning.tooltip", "Allows Confluence and TerraEntity mobs to spawn in the End", "允许 Confluence 和 TerraEntity 的怪物在末地生成");
         add("confluence_dimension_patch.configuration.allowNetherBiomeGeneration", "Allow Nether Biome Generation", "允许下界群系生成");
-        add("confluence_dimension_patch.configuration.allowNetherBiomeGeneration.tooltip", "Allows Confluence Nether biomes to generate in the vanilla Nether", "允许 Confluence 的下界群系在原版下界生成");
+        add("confluence_dimension_patch.configuration.allowNetherBiomeGeneration.tooltip", "Allows Confluence Nether biomes and terrain features to generate in the vanilla Nether", "允许 Confluence 的下界群系和地形特征在原版下界生成");
         add("confluence_dimension_patch.configuration.allowEndBiomeGeneration", "Allow End Biome Generation", "允许末地群系生成");
-        add("confluence_dimension_patch.configuration.allowEndBiomeGeneration.tooltip", "Allows Confluence End biomes to generate in the vanilla End", "允许 Confluence 的末地群系在原版末地生成");
-        add("confluence_dimension_patch.configuration.traceOtherworldTickWhenUnloaded", "Trace Unloaded OtherWorld Ticks", "追踪未进入来世时的 Tick");
-        add("confluence_dimension_patch.configuration.traceOtherworldTickWhenUnloaded.tooltip", "Logs slow Confluence tick paths while the OtherWorld has no players", "当来世没有玩家时，记录耗时较高的 Confluence tick 路径");
-        add("confluence_dimension_patch.configuration.otherworldTickTraceThresholdMicros", "OtherWorld Tick Trace Threshold (us)", "来世 Tick 追踪阈值（微秒）");
-        add("confluence_dimension_patch.configuration.otherworldTickTraceThresholdMicros.tooltip", "Minimum elapsed time in microseconds before a trace is logged", "超过该微秒耗时后才输出追踪日志");
-        add("confluence_dimension_patch.configuration.otherworldTickTraceIntervalTicks", "OtherWorld Tick Trace Interval", "来世 Tick 追踪间隔");
-        add("confluence_dimension_patch.configuration.otherworldTickTraceIntervalTicks.tooltip", "Minimum game ticks between repeated trace logs for the same path", "同一路径重复输出追踪日志的最小游戏刻间隔");
+        add("confluence_dimension_patch.configuration.allowEndBiomeGeneration.tooltip", "Allows Confluence End biomes and terrain features to generate in the vanilla End", "允许 Confluence 的末地群系和地形特征在原版末地生成");
+        add("confluence_dimension_patch.configuration.allowNetherStructureGeneration", "Allow Nether Structure Generation", "允许下界结构生成");
+        add("confluence_dimension_patch.configuration.allowNetherStructureGeneration.tooltip", "Allows Confluence structures to generate in the vanilla Nether", "允许 Confluence 的结构在原版下界生成");
+        add("confluence_dimension_patch.configuration.allowEndStructureGeneration", "Allow End Structure Generation", "允许末地结构生成");
+        add("confluence_dimension_patch.configuration.allowEndStructureGeneration.tooltip", "Allows Confluence structures to generate in the End", "允许 Confluence 的结构在末地生成");
         add("confluence_dimension_patch.configuration.title", "Confluence Dimension Patch", "汇流来世维度补丁");
     }
 

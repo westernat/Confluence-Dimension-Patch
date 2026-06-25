@@ -21,7 +21,7 @@ public abstract class ClientGameEventSystemMixin {
 
     @Inject(method = "handleBloodMoon", at = @At("HEAD"), cancellable = true)
     private static void cdp$skipBloodMoonOutsideOtherworld(Player player, boolean started, CallbackInfo ci) {
-        if (cdp$isOutsideOtherworld(player)) {
+        if (cdp$isNotOtherworld(player)) {
             ClientGameEventSystem.moonTexture = null;
             ClientGameEventSystem.lightTextureColor = null;
             ci.cancel();
@@ -30,13 +30,13 @@ public abstract class ClientGameEventSystemMixin {
 
     @Inject(method = "handleSpecificMoon", at = @At("HEAD"), cancellable = true)
     private static void cdp$skipSpecificMoonOutsideOtherworld(Player player, boolean started, CallbackInfo ci) {
-        if (cdp$isOutsideOtherworld(player)) {
+        if (cdp$isNotOtherworld(player)) {
             ClientGameEventSystem.moonTexture = null;
             ci.cancel();
         }
     }
 
-    private static boolean cdp$isOutsideOtherworld(Player player) {
+    private static boolean cdp$isNotOtherworld(Player player) {
         return player.level().dimension() != OtherWorld.LEVEL;
     }
 }

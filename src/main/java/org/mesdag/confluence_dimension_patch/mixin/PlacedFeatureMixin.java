@@ -2,7 +2,9 @@ package org.mesdag.confluence_dimension_patch.mixin;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.OreFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -10,7 +12,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementContext;
 import net.neoforged.neoforge.common.util.TriState;
 import org.confluence.mod.Confluence;
-import org.mesdag.confluence_dimension_patch.common.OtherWorld;
+import org.mesdag.confluence_dimension_patch.common.CDPCommonConfigs;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -29,22 +31,24 @@ public abstract class PlacedFeatureMixin {
     private static final String CDP$MINECRAFT = "minecraft";
 
     @Unique
-    private final TriState[] cdp$cache = new TriState[]{TriState.DEFAULT, TriState.DEFAULT};
+    private TriState cdp$skipWhenTerrainDisallowed = TriState.DEFAULT;
 
     @Inject(method = "placeWithContext", at = @At("HEAD"), cancellable = true)
     private void skip(PlacementContext context, RandomSource source, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-        boolean outsideOtherworld = context.getLevel().getLevel().dimension() != OtherWorld.LEVEL;
-        int index = outsideOtherworld ? 0 : 1;
-        if (cdp$cache[index].isDefault()) {
-            cdp$cache[index] = outsideOtherworld && cdp$shouldSkipOutsideOtherworld() ? TriState.FALSE : TriState.TRUE;
+        ResourceKey<Level> dimension = context.getLevel().getLevel().dimension();
+        if (CDPCommonConfigs.allowsConfluenceBiomeGeneration(dimension)) {
+            return;
         }
-        if (cdp$cache[index].isFalse()) {
+        if (cdp$skipWhenTerrainDisallowed.isDefault()) {
+            cdp$skipWhenTerrainDisallowed = cdp$shouldSkipWhenTerrainDisallowed() ? TriState.TRUE : TriState.FALSE;
+        }
+        if (cdp$skipWhenTerrainDisallowed.isTrue()) {
             cir.setReturnValue(false);
         }
     }
 
     @Unique
-    private boolean cdp$shouldSkipOutsideOtherworld() {
+    private boolean cdp$shouldSkipWhenTerrainDisallowed() {
         var key = feature.getKey();
         if (key != null && Confluence.MODID.equals(key.location().getNamespace())) {
             return true;

@@ -11,15 +11,21 @@ import org.confluence.mod.common.data.saved.MeteoriteTracker;
 import org.confluence.mod.common.event.game.TickEvents;
 import org.confluence.mod.common.gameevent.GameEventSystem;
 import org.mesdag.confluence_dimension_patch.common.CDPPerformanceTracer;
+import org.mesdag.confluence_dimension_patch.common.OtherWorld;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = TickEvents.class, remap = false)
 public abstract class TickEventsMixin {
-    @Inject(method = "levelTick$Post", at = @At("HEAD"))
+    @Inject(method = "levelTick$Post", at = @At("HEAD"), cancellable = true)
     private static void cdp$beginOtherworldTickTrace(LevelTickEvent.Post event, CallbackInfo ci) {
+        if (event.getLevel() instanceof ServerLevel level && cdp$shouldSkipEmptyOtherworldTick(level)) {
+            ci.cancel();
+            return;
+        }
         CDPPerformanceTracer.beginOtherworldLevelTick(event);
     }
 
@@ -97,5 +103,10 @@ public abstract class TickEventsMixin {
         } finally {
             CDPPerformanceTracer.endPathServiceTick(startNanos);
         }
+    }
+
+    @Unique
+    private static boolean cdp$shouldSkipEmptyOtherworldTick(ServerLevel level) {
+        return OtherWorld.LEVEL.equals(level.dimension()) && level.players().isEmpty();
     }
 }

@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class CDPPerformanceTracer {
+    private static final long TRACE_THRESHOLD_MICROS = 2000L;
+    private static final int TRACE_INTERVAL_TICKS = 100;
     private static final ThreadLocal<Long> OTHERWORLD_LEVEL_TICK_START_NANOS = new ThreadLocal<>();
     private static final Map<String, Long> LAST_TRACE_LOG_GAME_TIMES = new HashMap<>();
 
@@ -80,15 +82,11 @@ public final class CDPPerformanceTracer {
     }
 
     private static boolean shouldTraceOtherworldLevel(ServerLevel level) {
-        return CDPCommonConfigs.TRACE_OTHERWORLD_TICK_WHEN_UNLOADED.get()
-                && OtherWorld.LEVEL.equals(level.dimension())
+        return OtherWorld.LEVEL.equals(level.dimension())
                 && level.players().isEmpty();
     }
 
     private static boolean shouldTraceServerPath() {
-        if (!CDPCommonConfigs.TRACE_OTHERWORLD_TICK_WHEN_UNLOADED.get()) {
-            return false;
-        }
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if (server == null) {
             return false;
@@ -99,12 +97,11 @@ public final class CDPPerformanceTracer {
 
     private static void logIfSlow(String path, long startNanos, long gameTime, boolean otherworldLoaded, int players) {
         long elapsedMicros = (System.nanoTime() - startNanos) / 1000L;
-        if (elapsedMicros < CDPCommonConfigs.OTHERWORLD_TICK_TRACE_THRESHOLD_MICROS.get()) {
+        if (elapsedMicros < TRACE_THRESHOLD_MICROS) {
             return;
         }
-        int intervalTicks = CDPCommonConfigs.OTHERWORLD_TICK_TRACE_INTERVAL_TICKS.get();
         long lastLogGameTime = LAST_TRACE_LOG_GAME_TIMES.getOrDefault(path, Long.MIN_VALUE);
-        if (lastLogGameTime != Long.MIN_VALUE && gameTime - lastLogGameTime < intervalTicks) {
+        if (lastLogGameTime != Long.MIN_VALUE && gameTime - lastLogGameTime < TRACE_INTERVAL_TICKS) {
             return;
         }
         ConfluenceDimensionPatch.LOGGER.warn(
