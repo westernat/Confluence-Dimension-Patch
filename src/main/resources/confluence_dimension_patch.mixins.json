@@ -17,7 +17,8 @@
     "PlacedFeatureMixin",
     "StructureSetMixin",
     "SurfaceSystemMixin",
-    "TheEndBiomeHolderMixin"
+    "TheEndBiomeHolderMixin",
+    "TickEventsMixin"
   ],
   "client": [
   ],

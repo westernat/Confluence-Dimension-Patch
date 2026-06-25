@@ -16,6 +16,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.placement.PlacementContext;
 import org.confluence.mod.common.init.ModTags;
 import org.confluence.mod.util.OverworldUtils;
+import org.mesdag.confluence_dimension_patch.common.CDPCommonConfigs;
 import org.mesdag.confluence_dimension_patch.common.OtherWorld;
 import org.mesdag.confluence_dimension_patch.mixed.IDimensionAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -40,8 +41,10 @@ public abstract class OverworldUtilsMixin {
 
     @Inject(method = "replaceBiome", at = @At("HEAD"), cancellable = true)
     private static void unApply(CallbackInfo ci, @Local(argsOnly = true) MultiNoiseBiomeSource biomeSource, @Local(argsOnly = true) CallbackInfoReturnable<Holder<Biome>> cir) {
-        if (!uninitialized && IDimensionAccessor.of(biomeSource).cdp$isOutsideOtherworld()) {
-            if (cir.getReturnValue().is(ModTags.Biomes.IS_CONFLUENCE)) {
+        ResourceKey<Level> dimension = IDimensionAccessor.of(biomeSource).cdp$getDimension();
+        if (!uninitialized && IDimensionAccessor.of(biomeSource).cdp$isOutsideOtherworld() && !CDPCommonConfigs.allowsConfluenceBiomeGeneration(dimension)) {
+            Holder<Biome> biome = cir.getReturnValue();
+            if (biome != null && biome.is(ModTags.Biomes.IS_CONFLUENCE)) {
                 cir.setReturnValue(plains);
             }
             ci.cancel();
