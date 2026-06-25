@@ -1,5 +1,6 @@
 package org.mesdag.confluence_dimension_patch;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -14,10 +15,12 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import org.confluence.mod.common.init.ModTabs;
 import org.mesdag.confluence_dimension_patch.common.CDPCommonConfigs;
 import org.mesdag.confluence_dimension_patch.common.TerrariumItem;
+import org.slf4j.Logger;
 
 @Mod(ConfluenceDimensionPatch.MODID)
 public class ConfluenceDimensionPatch {
     public static final String MODID = "confluence_dimension_patch";
+    public static final Logger LOGGER = LogUtils.getLogger();
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredItem<TerrariumItem> TERRARIUM = ITEMS.register("terrarium", TerrariumItem::new);
 

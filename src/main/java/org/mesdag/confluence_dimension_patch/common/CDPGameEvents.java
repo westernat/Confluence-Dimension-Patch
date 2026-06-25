@@ -17,7 +17,8 @@ public final class CDPGameEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void mobSpawn$PositionCheck(MobSpawnEvent.PositionCheck event) {
         Mob mob = event.getEntity();
-        if (mob.level().dimension() != OtherWorld.LEVEL && ModUtils.isFromConfluence(BuiltInRegistries.ENTITY_TYPE, mob.getType())) {
+        if (!CDPCommonConfigs.allowsConfluenceMobSpawning(mob.level().dimension()) &&
+                ModUtils.isFromConfluence(BuiltInRegistries.ENTITY_TYPE, mob.getType())) {
             event.setResult(MobSpawnEvent.PositionCheck.Result.FAIL);
         }
     }

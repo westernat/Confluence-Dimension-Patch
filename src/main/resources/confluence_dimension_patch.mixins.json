@@ -10,12 +10,15 @@
     "ChunkMapMixin",
     "GameEntityEventMixin",
     "LivingEntityEventsMixin",
+    "integration.ageratum.AgeratumHelperMixin",
     "ModBiomesMixin",
     "NoiseBasedChunkGeneratorMixin",
     "OverworldUtilsMixin",
     "PlacedFeatureMixin",
     "StructureSetMixin",
-    "SurfaceSystemMixin"
+    "SurfaceSystemMixin",
+    "TheEndBiomeHolderMixin",
+    "TickEventsMixin"
   ],
   "client": [
   ],
